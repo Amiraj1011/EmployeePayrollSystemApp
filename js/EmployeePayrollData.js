@@ -1,14 +1,5 @@
 class EmployeePayrollData 
 {
-    get id()
-    {
-        return this._id;
-    }
-    set id(id)
-    {
-        this._id = id;
-    }
-
     get name() 
     {
         return this._name;
@@ -16,9 +7,9 @@ class EmployeePayrollData
     set name(name) 
     {
         let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if (nameRegex.test(name)) textError.textContent = "";
-          
-            else textError.textContent = "Name is Incorrect";
+        if (nameRegex.test(name))
+            this._name = name;
+        else throw 'Name is incorrect';
     }
     
     get profilePic() 
