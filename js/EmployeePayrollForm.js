@@ -26,18 +26,25 @@ window.addEventListener('DOMContentLoaded', (event) =>{
 });
 
 const save = () => {
-    try {
+    try 
+    {
         let employeePayrollData = createEmployeePayroll();
-    } catch (e) {
+        createAndUpdateStorage(employeePayrollData);
+    } 
+    catch (e) 
+    {
         return;
     }
 }
 
 const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
-    try {
+    try 
+    {
         employeePayrollData.name = getInputValueById('#name');
-    } catch (e) {
+    } 
+    catch (e) 
+    {
         setTextValue('.text-error', e);
         throw e;
     }
@@ -66,6 +73,17 @@ const getSelectedValues = (propertyValue) => {
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
+}
+
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData];
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 
 
