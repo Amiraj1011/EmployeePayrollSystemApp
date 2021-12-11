@@ -63,7 +63,15 @@ class EmployeePayrollData
     }
     set start_date(start_date) 
     {
-        this._start_date = start_date;
+        let now = new Date();
+        now = Date.parse(now);
+        if (start_date > now) 
+        {
+            throw 'Start Date is Future date!';
+        } else 
+        {
+            this._start_date = start_date;
+        }
     }
 
     toString() 
